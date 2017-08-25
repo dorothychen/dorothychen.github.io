@@ -1,0 +1,31 @@
+.title {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.title h1 {
+    font-family: "Lora";
+    font-size: 5em;
+}
+
+.book {
+    margin-bottom: 30px;
+
+    font-size: 18px;
+    color: rgb(69,90,100);
+}
+
+.book a {
+    text-decoration: none;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background: rgba(176,190,197, 0.5);
+
+    color: rgb(21,101,192);
+}
+
+.book a:hover {
+    background: rgba(176,190,197, 0.2);
+}
