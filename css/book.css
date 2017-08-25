@@ -1,0 +1,15 @@
+nav {
+    position: absolute;
+    margin: 20px 20px 20px 50px;
+
+    font-family: Lora, Times, serif;
+}
+
+nav a {
+    text-decoration: none;
+    color: rgb(84,110,122);
+}
+
+nav a:hover {
+    color: rgb(13,71,161);
+}
