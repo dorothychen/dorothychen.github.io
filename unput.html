@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+  <h2>Controlled input</h2>
+  <input style="width: 100%" id="inputControlled" />
+
+  <h2>Native input</h2>
+  <input style="width: 100%" id="inputNative" />
+
+
+  <script>
+    const input = document.getElementById("inputControlled");
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight" && !e.shiftKey) {
+        input.setSelectionRange(
+          input.selectionStart + 1,
+          input.selectionStart + 1
+        );
+        e.preventDefault();
+      } else if (e.key === "ArrowRight" && e.shiftKey) {
+        input.setSelectionRange(input.selectionStart, input.selectionEnd + 1);
+        e.preventDefault();
+      } else if (e.key === "ArrowLeft" && !e.shiftKey) {
+        input.setSelectionRange(
+          input.selectionStart - 1,
+          input.selectionStart - 1
+        );
+        e.preventDefault();
+      } else if (e.key === "ArrowLeft" && e.shiftKey) {
+        input.setSelectionRange(input.selectionStart - 1, input.selectionEnd);
+        e.preventDefault();
+      } else if (
+        e.key !== "Meta" &&
+        e.key !== "Alt" &&
+        e.key !== "Shift" &&
+        e.key !== "Backspace" &&
+        e.key !== "Escape" && !e.metaKey
+      ) {
+        input.value = input.value + e.key;
+        e.preventDefault();
+      }
+
+      console.log("keydown", input.selectionStart);
+    });
+  </script>
+</html>
