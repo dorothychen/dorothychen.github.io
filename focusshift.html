@@ -1,0 +1,77 @@
+<!DOCTYPE html> 
+
+<html>
+<style>
+
+.maskContainer {
+    height: 80px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+ }
+
+.mask {
+    overflow: hidden;
+    pointer-events: none;
+    padding: 500px 500px 0 500px;
+    margin: -500px -500px 0 -500px;
+}
+
+.container {
+    height: 100%;
+    background: lightgreen;
+}
+
+.button {
+    height: 100%;
+    overflow: inherit;
+    background: lightorange;
+}
+
+.overflowHidden {
+    overflow: hidden;
+}
+
+.testdiv {
+    clip-path: circle();
+    height: 136px;
+    width: 100px;
+    background: red;
+}
+
+.testdiv:hover {
+    transform-origin: 50% 50% 0px;
+    transform: translateY(-32px) scale(1) translateZ(0px);
+}
+
+</style>
+
+
+<body>
+    <h2>overflow: hidden</h2>
+    <div class="maskContainer">
+        <div class="mask">
+          <div class="container">
+            <div class="button overflowHidden" role="button">
+              <div class="testdiv"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2>overflow: auto</h2>
+      <div class="maskContainer">
+          <div class="mask">
+            <div class="container">
+              <div class="button" role="button">
+                <div class="testdiv"></div>
+              </div>
+            </div>
+          </div>
+        </div>      
+</body>
+
+</html>
