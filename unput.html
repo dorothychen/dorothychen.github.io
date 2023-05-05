@@ -2,13 +2,13 @@
 <html>
 
   <h2>Controlled input</h2>
-  <input style="width: 100%" id="inputControlled" />
+  <textarea style="width: 100%" id="inputControlled" ></textarea>
 
   <h2>Native input</h2>
-  <input style="width: 100%" id="inputNative" />
+  <textarea style="width: 100%" id="inputNative"></textarea>
 
   <h2>Native readonly input</h2>
-  <input style="width: 100%" id="inputNativeReadonly" readonly value="readonly value"/>
+  <textarea style="width: 100%" id="inputNativeReadonly" readonly value="readonly value"></textarea>
 
   <script>
     const input = document.getElementById("inputControlled");
@@ -32,7 +32,25 @@
       } else if (e.key === "ArrowLeft" && e.shiftKey) {
         input.setSelectionRange(input.selectionStart - 1, input.selectionEnd);
         e.preventDefault();
-      } else if (
+      } else if (e.key === "ArrowLeft" && (e.metaKey || e.ctrlKey)) {
+        let i = input.selectionStart
+        while (i > 0) {
+          i--
+          if (input.value.at(i) === ' ') break
+        }
+        input.setSelectionRange(i, i);
+        e.preventDefault();
+      }
+       else if (e.key === 'ArrowRight' && (e.metaKey || e.ctrlKey)) {
+        let i = input.selectionStart
+        while (i < input.value.length - 1) {
+          i++
+          if (input.value.at(i) === ' ') break
+        }
+        input.setSelectionRange(i, i);
+        e.preventDefault();
+       }
+      else if (
         e.key !== "Meta" &&
         e.key !== "Alt" &&
         e.key !== "Shift" &&
