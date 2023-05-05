@@ -37,7 +37,8 @@
         e.key !== "Alt" &&
         e.key !== "Shift" &&
         e.key !== "Backspace" &&
-        e.key !== "Escape" && !e.metaKey
+        e.key !== "Escape" && !e.metaKey &&
+        e.key !== "Control"
       ) {
         input.value = input.value + e.key;
         e.preventDefault();
