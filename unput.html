@@ -1,27 +1,50 @@
 <!DOCTYPE html>
 <html>
-
   <h2>Controlled input</h2>
-  <textarea style="width: 100%" id="inputControlled" ></textarea>
+  <textarea style="width: 100%" id="inputControlled"></textarea>
 
   <h2>Native input</h2>
   <textarea style="width: 100%" id="inputNative"></textarea>
 
   <h2>Native readonly input</h2>
-  <textarea style="width: 100%" id="inputNativeReadonly" readonly value="readonly value"></textarea>
+  <textarea
+    style="width: 100%"
+    id="inputNativeReadonly"
+    readonly
+    value="readonly value"
+  ></textarea>
 
   <script>
     const input = document.getElementById("inputControlled");
 
     input.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight" && !e.shiftKey) {
+      if (e.key === "ArrowRight" && e.shiftKey) {
+        input.setSelectionRange(input.selectionStart, input.selectionEnd + 1);
+        e.preventDefault();
+      } else if (e.key === "ArrowLeft" && e.shiftKey) {
+        input.setSelectionRange(input.selectionStart - 1, input.selectionEnd);
+        e.preventDefault();
+      } else if (e.key === "ArrowLeft" && (e.metaKey || e.ctrlKey)) {
+        let i = input.selectionStart;
+        while (i > 0) {
+          i--;
+          if (input.value.at(i) === " ") break;
+        }
+        input.setSelectionRange(i, i);
+        e.preventDefault();
+      } else if (e.key === "ArrowRight" && (e.metaKey || e.ctrlKey)) {
+        let i = input.selectionStart;
+        while (i < input.value.length - 1) {
+          i++;
+          if (input.value.at(i) === " ") break;
+        }
+        input.setSelectionRange(i, i);
+        e.preventDefault();
+      } else if (e.key === "ArrowRight" && !e.shiftKey) {
         input.setSelectionRange(
           input.selectionStart + 1,
           input.selectionStart + 1
         );
-        e.preventDefault();
-      } else if (e.key === "ArrowRight" && e.shiftKey) {
-        input.setSelectionRange(input.selectionStart, input.selectionEnd + 1);
         e.preventDefault();
       } else if (e.key === "ArrowLeft" && !e.shiftKey) {
         input.setSelectionRange(
@@ -29,33 +52,13 @@
           input.selectionStart - 1
         );
         e.preventDefault();
-      } else if (e.key === "ArrowLeft" && e.shiftKey) {
-        input.setSelectionRange(input.selectionStart - 1, input.selectionEnd);
-        e.preventDefault();
-      } else if (e.key === "ArrowLeft" && (e.metaKey || e.ctrlKey)) {
-        let i = input.selectionStart
-        while (i > 0) {
-          i--
-          if (input.value.at(i) === ' ') break
-        }
-        input.setSelectionRange(i, i);
-        e.preventDefault();
-      }
-       else if (e.key === 'ArrowRight' && (e.metaKey || e.ctrlKey)) {
-        let i = input.selectionStart
-        while (i < input.value.length - 1) {
-          i++
-          if (input.value.at(i) === ' ') break
-        }
-        input.setSelectionRange(i, i);
-        e.preventDefault();
-       }
-      else if (
+      } else if (
         e.key !== "Meta" &&
         e.key !== "Alt" &&
         e.key !== "Shift" &&
         e.key !== "Backspace" &&
-        e.key !== "Escape" && !e.metaKey &&
+        e.key !== "Escape" &&
+        !e.metaKey &&
         e.key !== "Control"
       ) {
         input.value = input.value + e.key;
